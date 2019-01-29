@@ -1,0 +1,43 @@
+$m: btn;
+
+.#{$m} {
+    display: inline-block;
+    @include border-box();
+    height: 40px;
+    padding: 0 40px;
+    font-family: $font_sec;
+    @include font-size(11);
+    @include line-height(40);
+    font-weight: 700;
+    letter-spacing: 3.4px;
+    text-transform: uppercase;
+    text-align: center;
+    color: $color_01;
+    border: 2px solid $color_02;
+    position: relative;
+    @include transition(color 0.3s);
+
+    &:after {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: $color_02;
+        opacity: 0;
+        @include scale(0,0);
+        @include transition(all 0.3s);
+        z-index: -1;
+    }
+
+    &:hover {
+        color: #FFF;
+
+        &:after {
+            opacity: 1;
+            @include scale(1,1);
+        }
+    }
+}

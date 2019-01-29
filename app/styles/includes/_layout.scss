@@ -1,0 +1,51 @@
+//**************************************************
+// CORE SETTINGS
+//**************************************************
+html, body {
+    overflow-x: hidden;
+}
+
+html {
+    font-size: $main_fs;
+}
+
+body {
+    font-family: $font_prim;
+    line-height: $main_lh;
+    @include font-size(16);
+    overflow-x: hidden;
+    background-color: $bg_color;
+    color: $text_color;
+    margin: 0;
+
+    &.locked {
+        overflow-y: hidden;
+        position: fixed;
+    }
+}
+
+.relative {
+    position: relative;
+}
+
+ul, ol, nav {
+    @extend %ullist;
+}
+
+[data-aload] { background-image: none !important; }
+
+.no-gutters {
+    margin-right: 0;
+    margin-left: 0;
+
+    > .col,
+    > [class*="col-"] {
+        padding-right: 0;
+        padding-left: 0;
+    }
+}
+
+.container-full {
+    padding-left: 0;
+    padding-right: 0;
+}

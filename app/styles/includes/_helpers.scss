@@ -1,0 +1,231 @@
+//**************************************************
+// HELPERS CLASSES
+//**************************************************
+
+.relative{
+    position: relative;
+}
+
+.ir {
+    background-color: transparent;
+    border: 0;
+    overflow: hidden;
+    *text-indent: -9999px;
+    &:before {
+        content: "";
+        display: block;
+        width: 0;
+        height: 150%;
+    }
+}
+
+.hidden {
+    display: none !important;
+    visibility: hidden;
+}
+
+.visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+    &.focusable {
+        &:active, &:focus {
+            clip: auto;
+            height: auto;
+            margin: 0;
+            overflow: visible;
+            position: static;
+            width: auto;
+        }
+    }
+}
+
+.invisible {
+    visibility: hidden;
+}
+
+.cf {
+    &:before, &:after {
+        content: " ";
+        display: table;
+    }
+}
+
+.clearfix {
+    &:before, &:after {
+        content: " ";
+        display: table;
+    }
+}
+
+.cf:after, .clearfix:after {
+    clear: both;
+}
+
+.cf, .clearfix {
+    *zoom: 1;
+}
+
+.block {
+    display: block;
+}
+
+.inline-block {
+    display: inline-block;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-justify {
+    text-align: justify;
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+.uppercase {
+    text-transform: uppercase;
+}
+
+.debug {
+    outline: solid gold 1px;
+}
+
+.debug-background {
+    background: rgba(255, 215, 0, 0.2) !important;
+}
+
+.rspimg {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+//styling for error messages (example: form validations...)
+.error {
+    color: #ed4b47;
+}
+
+//Reset UL list
+%ullist {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+//Margins & Paddings
+$helper_classes: (
+
+    properties: (m, p),
+
+    variants: (
+
+        t: ( 1 0 0 0 ),
+        r: ( 0 1 0 0 ),
+        b: ( 0 0 1 0 ),
+        l: ( 0 0 0 1 ),
+        v: ( 1 0 1 0 ),
+        h: ( 0 1 0 1 )
+    ),
+
+    values: (0, 4, 12, 16, 20, 24, 32, 36, 42, 48, 52, 60, 80, 100, 120, 140, 160, 5, 10, 15, 20, 25, 30, 40, 50)
+
+);
+
+$types: map-get($helper_classes, properties);
+$variants: map-get($helper_classes, variants);
+$values: map-get($helper_classes, values);
+
+@each $propertie in $types {
+    @each $variant, $props in $variants {
+        @each $value in $values {
+
+            .#{$propertie}#{$variant}#{$value} {
+
+                $top: nth($props, 1);
+                @if ($top == 1) {
+                    @if ($propertie == m){
+                        margin-top: $top * $value + px !important;
+                    } @else {
+                        padding-top: $top * $value + px !important;
+                    }
+                }
+
+
+                $right: nth($props, 2);
+                @if ($right == 1) {
+                    @if ($propertie == m){
+                        margin-right: $right * $value + px !important;
+                    } @else {
+                        padding-right: $right * $value + px !important;
+                    }
+                }
+
+
+                $bottom: nth($props, 3);
+                @if ($bottom == 1) {
+                    @if ($propertie == m){
+                        margin-bottom: $bottom * $value + px !important;
+                    } @else {
+                        padding-bottom: $bottom * $value + px !important;
+                    }
+                }
+
+
+                $left: nth($props, 4);
+                @if ($left == 1) {
+                    @if ($propertie == m){
+                        margin-left: $left * $value + px !important;
+                    } @else {
+                        padding-left: $left * $value + px !important;
+                    }
+                }
+            }
+        }
+    }
+}
+
+%noclick {
+    pointer-events: none;
+}
+
+%noselect {
+    user-select: none;
+}
+
+%click {
+    pointer-events: all;
+}
+
+.screen-reader-response {
+    display: none;
+    visibility: hidden;
+}
+
+%full {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}

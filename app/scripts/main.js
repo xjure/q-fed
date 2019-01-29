@@ -1,9 +1,28 @@
-console.log('\'Allo \'Allo!');
+$(function() {
+  if(!Modernizr.svg) {
+    $.each($('img[src$="svg"][data-png]'),
+    function() {
+      var element = $(this);
+      element.attr('src', element.attr('data-png'));
+    });
+  }
+});
 
-// Uncomment to enable Bootstrap tooltips
-// https://getbootstrap.com/docs/4.0/components/tooltips/#example-enable-tooltips-everywhere
-// $(function () { $('[data-toggle="tooltip"]').tooltip(); });
+$('a[href^="#"]').on('click', function(event) {
+    $('body').removeClass('locked');
 
-// Uncomment to enable Bootstrap popovers
-// https://getbootstrap.com/docs/4.0/components/popovers/#example-enable-popovers-everywhere
-// $(function () { $('[data-toggle="popover"]').popover(); });
+    $('.js_nav').removeClass('opened');
+    $('.header__nav').removeClass('opened');
+
+    var target = $(this.getAttribute('href'));
+    if( target.length ) {
+        event.preventDefault();
+        $('html, body').stop().animate({
+            scrollTop: target.offset().top
+        }, 1000);
+    }
+});
+
+window.onload = function () {
+    aload();
+};
