@@ -39,6 +39,10 @@ artea.search = function() {
         $(window).scrollTop(scrollTop);
         scrollDisabled = false;
     });
+
+    $('.search__input').click(function(e){
+        e.stopPropagation();
+    });
 };
 
 $(document).ready(function (){
